@@ -17,6 +17,7 @@ Date   : 2017-01-28
 #include <vector>
 #include <mutex>
 #include <memory>
+#include "make_unique.h"
 #include <tuple>
 //#include <stack>
 #include <queue>

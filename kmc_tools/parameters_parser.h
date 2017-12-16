@@ -14,6 +14,7 @@
 #include "defs.h"
 #include "parser.h"
 #include <memory>
+#include "make_unique.h"
 class CParametersParser
 {	
 	std::unique_ptr<CParser> complex_parser;

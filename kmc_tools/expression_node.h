@@ -16,6 +16,7 @@
 #include <string>
 #include <sstream>
 #include <memory>
+#include "make_unique.h"
 #include "kmc1_db_reader.h"
 #include "kmc2_db_reader.h"
 

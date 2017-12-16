@@ -15,6 +15,7 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include "make_unique.h"
 #include <cstring>
 #include "kmc_header.h"
 #include "percent_progress.h"

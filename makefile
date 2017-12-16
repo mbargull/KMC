@@ -10,8 +10,8 @@ CXX 	?= g++
 CFLAGS	= -Wall -O3 -m64 -Wl,--whole-archive -lpthread -Wl,--no-whole-archive -std=c++11
 CLINK	= -lm -O3 -Wl,--whole-archive -lpthread -Wl,--no-whole-archive -std=c++11
 
-KMC_TOOLS_CFLAGS	= -Wall -O3 -m64 -Wl,--whole-archive -lpthread -Wl,--no-whole-archive -std=c++14
-KMC_TOOLS_CLINK	= -lm -O3 -Wl,--whole-archive -lpthread -Wl,--no-whole-archive -std=c++14
+KMC_TOOLS_CFLAGS	= -Wall -O3 -m64 -Wl,--whole-archive -lpthread -Wl,--no-whole-archive -std=c++11
+KMC_TOOLS_CLINK	= -lm -O3 -Wl,--whole-archive -lpthread -Wl,--no-whole-archive -std=c++11
 
 DISABLE_ASMLIB ?= false
 
