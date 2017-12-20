@@ -36,9 +36,7 @@ $(KMC_MAIN_DIR)/raduls_sse41.o \
 $(KMC_MAIN_DIR)/raduls_avx2.o \
 $(KMC_MAIN_DIR)/raduls_avx.o
 
-KMC_LIBS = \
-$(KMC_MAIN_DIR)/libs/libz.a \
-$(KMC_MAIN_DIR)/libs/libbz2.a
+KMC_LIBS = -lz -lbz2
 
 KMC_DUMP_OBJS = \
 $(KMC_DUMP_DIR)/nc_utils.o \
@@ -62,18 +60,16 @@ $(KMC_TOOLS_DIR)/fastq_reader.o \
 $(KMC_TOOLS_DIR)/fastq_writer.o \
 $(KMC_TOOLS_DIR)/percent_progress.o
 
-KMC_TOOLS_LIBS = \
-$(KMC_TOOLS_DIR)/libs/libz.a \
-$(KMC_TOOLS_DIR)/libs/libbz2.a
+KMC_TOOLS_LIBS = -lz -lbz2
 
 ifeq ($(DISABLE_ASMLIB),true)
 	CFLAGS += -DDISABLE_ASMLIB
 	KMC_TOOLS_CFLAGS += -DDISABLE_ASMLIB
 else
 	KMC_LIBS += \
-	$(KMC_MAIN_DIR)/libs/libaelf64.a
+	-Wl,-Bstatic $(KMC_MAIN_DIR)/libs/libaelf64.a -Wl,-Bdynamic
 	KMC_TOOLS_LIBS += \
-	$(KMC_TOOLS_DIR)/libs/libaelf64.a
+	-Wl,-Bstatic $(KMC_TOOLS_DIR)/libs/libaelf64.a -Wl,-Bdynamic
 endif
 
 $(KMC_OBJS) $(KMC_DUMP_OBJS) $(KMC_API_OBJS): %.o: %.cpp
@@ -95,7 +91,7 @@ $(KMC_MAIN_DIR)/instrset_detect.o: $(KMC_MAIN_DIR)/libs/vectorclass/instrset_det
 
 kmc: $(KMC_OBJS) $(RADULS_OBJS) $(KMC_MAIN_DIR)/instrset_detect.o
 	-mkdir -p $(KMC_BIN_DIR)
-	$(CXX) -o $(KMC_BIN_DIR)/$@ $^ -Wl,-Bstatic $(KMC_LIBS) -Wl,-Bdynamic $(LDFLAGS) $(CLINK)
+	$(CXX) -o $(KMC_BIN_DIR)/$@ $^ $(KMC_LIBS) $(LDFLAGS) $(CLINK)
 kmc_dump: $(KMC_DUMP_OBJS) $(KMC_API_OBJS)
 	-mkdir -p $(KMC_BIN_DIR)
 	$(CXX) -o $(KMC_BIN_DIR)/$@ $^ $(LDFLAGS) $(CLINK)

@@ -31,9 +31,7 @@ $(KMC_MAIN_DIR)/kmer.o \
 $(KMC_MAIN_DIR)/prob_qual.o
 
 
-KMC_LIBS = \
-$(KMC_MAIN_DIR)/libs/libz.1.2.5.dylib \
-$(KMC_MAIN_DIR)/libs/libbz2.1.0.5.dylib
+KMC_LIBS = -lz -lbz2
 
 KMC_DUMP_OBJS = \
 $(KMC_DUMP_DIR)/nc_utils.o \
@@ -56,9 +54,7 @@ $(KMC_TOOLS_DIR)/fastq_filter.o \
 $(KMC_TOOLS_DIR)/fastq_reader.o \
 $(KMC_TOOLS_DIR)/fastq_writer.o \
 $(KMC_TOOLS_DIR)/percent_progress.o
-KMC_TOOLS_LIBS = \
-$(KMC_TOOLS_DIR)/libs/libz.1.2.5.dylib \
-$(KMC_TOOLS_DIR)/libs/libbz2.1.0.5.dylib
+KMC_TOOLS_LIBS = -lz -lbz2
 
 
 ifeq ($(DISABLE_ASMLIB),true)
